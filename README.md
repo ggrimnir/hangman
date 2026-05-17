@@ -27,25 +27,26 @@
 - Работа с файлами для чтения словаря
 
 ## Структура проекта - ООП-подход
-hangman/
-├── controller/
-│   └── GameProcess.java                            # управление игровым процессом
-├── exception/
-│   ├── ConsoleLetterRequestInputException.java     # не буква/не буква русского алфавита
-│   ├── ConsoleMenuInputException.java              # выбран неподходящий ввод для меню
-│   ├── DictionaryEmptyException.java               # словарь пуст/нет подходящих слов
-│   ├── GameLetterInvalidException.java             # некорректная буква -> зачитывает ошибку игроку
-│   └── GameLetterAlreadyUsedException.java         # буква уже использована
-├── model/
-│   ├── Game.java                                   # логика игры (состояние, проверки)
-│   ├── GameStatus.java                             # статус игры (WIN, LOSE, IN_PROGRESS)
-│   ├── MaskHandler.java                            # логика открытия маски
-│   └── Word.java                                   # загаданное слово
-├── util/
-│   ├── Chooser.java                                # интерфейс выбора слова
-│   └── DictionaryChooser.java                      # случайный выбор слова из словаря
-├── view/
-│   ├── Console.java                                # ввод/вывод в консоль
-│   └── HangmanAsciiArt.java                        # ASCII-отрисовка виселицы
-├── App.java                                        # точка запуска
-└── resources/dictionary.txt                        # словарь
+- hangman/
+  - App.java
+  - controller/
+    - GameProcess.java
+  - exception/
+    - ConsoleLetterRequestInputException.java
+    - ConsoleMenuInputException.java
+    - DictionaryEmptyException.java
+    - GameLetterInvalidException.java
+    - GameLetterAlreadyUsedException.java
+  - model/
+    - Game.java
+    - GameStatus.java
+    - MaskHandler.java
+    - Word.java
+  - util/
+    - Chooser.java
+    - DictionaryChooser.java
+  - view/
+    - Console.java
+    - HangmanAsciiArt.java
+  - resources/
+    - dictionary.txt
