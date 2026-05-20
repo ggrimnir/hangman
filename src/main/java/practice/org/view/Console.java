@@ -3,6 +3,7 @@ package practice.org.view;
 import practice.org.exception.ConsoleLetterRequestInputException;
 import practice.org.exception.ConsoleMenuInputException;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -66,6 +67,10 @@ public class Console {
     public void printSuccessfulGuessForPlayer(StringBuilder mask) {
         System.out.println("Correct!");
         printMask(mask);
+    }
+
+    public void printUsedLettersMessage(List<Character> usedLetters) {
+        System.out.println("Used letters: " + usedLetters);
     }
 
     public void printGameWon() {

@@ -1,5 +1,6 @@
 package practice.org.controller;
 
+import practice.org.exception.ConsoleMenuInputException;
 import practice.org.view.Console;
 import practice.org.exception.ConsoleLetterRequestInputException;
 import practice.org.exception.GameLetterInvalidException;
@@ -26,14 +27,18 @@ public class GameProcess {
     }
 
     public void execute() {
-        switch (console.mainMenuStart()) {
-            case 1 -> {
-                console.printNewGameMessage();
-                startNewGame();
+        try {
+            switch (console.mainMenuStart()) {
+                case 1 -> {
+                    console.printNewGameMessage();
+                    startNewGame();
+                }
+                case 2 -> console.exit();
             }
-            case 2 -> console.exit();
+        } catch (ConsoleMenuInputException e) {
+            System.out.println(e.getMessage());
+            execute();
         }
-
     }
 
     private void startNewGame() {
@@ -56,6 +61,7 @@ public class GameProcess {
             console.printExceptionMessage(e);
             showInfoForInvalidGuess();
         }
+        showUsedLetters();
     }
 
     private void showInfoForValidGuess() {
@@ -70,6 +76,10 @@ public class GameProcess {
         game.checkGameStatus();
     }
 
+    private void showUsedLetters() {
+        console.printUsedLettersMessage(game.getUsedLetters());
+    }
+
     private void showFinalResult() {
         if (game.getGameStatus() == GameStatus.WON) {
             console.printGameWon();
@@ -80,13 +90,18 @@ public class GameProcess {
     }
 
     private void showReplayRequest() {
-        int response = console.replayRequest();
-        switch (response) {
-            case 1 -> {
-                game = new Game();
-                startNewGame();
+        try {
+            int response = console.replayRequest();
+            switch (response) {
+                case 1 -> {
+                    game = new Game();
+                    startNewGame();
+                }
+                case 2 -> console.exit();
             }
-            case 2 -> console.exit();
+        } catch (ConsoleMenuInputException e) {
+            System.out.println(e.getMessage());
+            showReplayRequest();
         }
     }
 }
